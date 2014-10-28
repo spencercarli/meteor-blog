@@ -1,4 +1,4 @@
-Template.dynamic.helpers
+Template.dynamics.helpers
   template: ->
     name = Router.current().route.name
 

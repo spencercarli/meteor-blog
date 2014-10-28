@@ -32,7 +32,7 @@ Router.map ->
 
   @route 'blogIndex',
     path: '/blog'
-    template: 'dynamic'
+    template: 'dynamics'
 
     onRun: ->
       if not Session.get('postLimit') and Blog.settings.pageSize
@@ -57,7 +57,7 @@ Router.map ->
 
   @route 'blogTagged',
     path: '/blog/tag/:tag'
-    template: 'dynamic'
+    template: 'dynamics'
 
     waitOn: -> [
       subs.subscribe 'taggedPosts', @params.tag
@@ -78,7 +78,7 @@ Router.map ->
 
   @route 'blogShow',
     path: '/blog/:slug'
-    template: 'dynamic'
+    template: 'dynamics'
     notFoundTemplate: 'blogNotFound'
 
     onRun: ->
@@ -121,7 +121,7 @@ Router.map ->
 
   @route 'blogAdmin',
     path: '/admin/blog'
-    template: 'dynamic'
+    template: 'dynamics'
 
     onBeforeAction: (pause) ->
       if Meteor.loggingIn()
@@ -147,7 +147,7 @@ Router.map ->
 
   @route 'blogAdminEdit',
     path: '/admin/blog/edit/:id'
-    template: 'dynamic'
+    template: 'dynamics'
 
     onBeforeAction: (pause) ->
       if Meteor.loggingIn()
@@ -155,7 +155,7 @@ Router.map ->
 
       Deps.autorun () ->
         Router.go 'blogIndex' if not Meteor.userId()
-        
+
       Meteor.call 'isBlogAuthorized', @params.id, (err, authorized) =>
         if not authorized
           return @redirect('/blog')
